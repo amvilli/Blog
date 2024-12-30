@@ -173,7 +173,7 @@
                         <form class="comment" action="<%= `/comment/${blog._id}` %>" method="post">
                             <p>
                                 <% if (locals.user) { %>
-                                    <img class="current-user-img" src=" <%= user.profileImage %>" alt="">
+                                    <img class="current-user-img" src=" <%= user.profileImage %>" alt="userimg">
                                     <% } else {%>
                                         user
                                         <% } %>

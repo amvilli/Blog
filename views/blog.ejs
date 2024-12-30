@@ -63,7 +63,7 @@
                 <% blogs.forEach(blog=> { %>
                     
                     <div class="blog-box">
-                        <img src="images/3e5f460b6da06c8a302620f90bfdb2fa.jpg" alt="">
+                        <img src="<%= blog.blogImg %>" alt="blogImg">
                         <h4> <%= blog.title %> </h4>
                         <button> <a href="<%=`/blog/${blog._id}` %>" > View</a> </button>
                     </div>

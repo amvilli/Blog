@@ -12,6 +12,10 @@ const userBlog = new mongoose.Schema({
         required: true,
 
     },
+    blogImg : {
+        type : String ,
+        default : "/images/3e5f460b6da06c8a302620f90bfdb2fa.jpg"
+    },
     createdBy: {
         type: mongoose.Types.ObjectId,
         ref: "user"

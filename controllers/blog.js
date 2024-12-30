@@ -29,11 +29,17 @@ async function HandleBlogCreateGetReq(req, res) {
 
 async function HandleBlogPostReq(req, res) {
 
+    console.log(req.file, " req.file ")
+    console.log(req.body, " req.body ")
     if (!req.user) return res.redirect("/user/login")
 
-    const { title, body, createdBy } = req.body
+    const { title, body, createdBy, blogImg } = req.body
     try {
-        const createdBlog = await Blog.create({ title, body, createdBy: req.user._id })
+        const createdBlog = await Blog.create({ 
+            title: req.body.title,
+            body : req.body.body , 
+             blogImg : `${req.file.filename}`
+              ,createdBy: req.user._id })
         res.redirect(`/blog/${createdBlog._id}`);
     }
     catch (error) {
