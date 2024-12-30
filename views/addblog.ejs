@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+  
+  .container{width: 100vw; height: 80vh; display: flex; justify-content: center; align-items: center;}
+  form { display: flex; flex-direction: column; width: 100% ; height: 100%; justify-content: center; align-items: center;  margin-top: 50px;}
+  .container .title {
+    border: 1px solid black ;
+    border-radius: 3px ;
+    width: 50%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .container .title input {
+    width: 50%;
+    outline: none;
+    border: none;
+
+  }
+  .container .body{
+    width: 50%;
+    height: 30%;
+    
+    margin-bottom: 10px;
+  }
+  .container .body textarea{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+
+ .container button{
+    margin-top: 20px;
+    
+    background-color: rgb(22, 175, 22);
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px ;
+ }
+ .error {
+    color: rgb(212, 54, 54);
+    text-align: center;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+
+ }
+
+
+  
+</style>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    
+    <div class="container">
+        <form action="/blog" method="post">
+            <% if (locals.error) { %>
+                <pre class="error" >         <%= error %></pre>
+            <% } %>
+            <div class="title" >
+                <label for="title">Title</label>
+                <input type="text" name="title" placeholder="Enter title ">
+            </div>
+
+            <div class="body" >
+                <label for="body">body</label>
+                <textarea name="body" id="body"></textarea>
+            </div>
+            <button class="btn" type="submit" > Submit </button>
+        </form>
+    </div>
+
+        <%- include("./partials/script.ejs") %> 
+
+</body>
+
+</html>

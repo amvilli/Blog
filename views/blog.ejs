@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    .container {
+        width: 100vw;
+        min-height: 80vh;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+.blog-box {
+    border: 1px  solid black;
+    width: 30%;
+    min-height: 30vh;
+    padding-bottom: 5px;
+
+    text-align: center;
+
+}
+.blog-box img { 
+    width: 100%;
+    height:80% ;
+    object-fit: cover;
+}
+.blog-box h4 { 
+    font-family: sans-serif;
+    font-weight: 500;
+    padding: 10px;
+}
+.blog-box button {
+    padding: 7px 17px ;
+    background-color:rgb(60, 95, 235);
+    border: 1px solid white;
+    color: white;
+    border-radius: 3px;
+
+
+}
+.blog-box button:hover{
+    background-color: rgb(23, 42, 119) ;
+}
+.blog-box button a {
+    text-decoration: none;
+    color: white;
+}
+</style>
+
+<body>
+    <%- include("./partials/nav.ejs") %>
+
+        <div class="container">
+            <% if (locals.blogs) { %>
+                <% blogs.forEach(blog=> { %>
+                    
+                    <div class="blog-box">
+                        <img src="images/3e5f460b6da06c8a302620f90bfdb2fa.jpg" alt="">
+                        <h4> <%= blog.title %> </h4>
+                        <button> <a href="<%=`/blog/${blog._id}` %>" > View</a> </button>
+                    </div>
+                   
+                    <% }) %>
+
+                        <% } %>
+
+        </div>
+
+        <%- include("./partials/script.ejs") %>
+
+</body>
+
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    .container {
+        width: 100vw;
+        min-height: 80vh;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .blogBody {
+        width: 100vw;
+        min-height: 60vh;
+        border: 1px solid black;
+        border-radius: 3px;
+        background-color: rgba(0, 0, 0, 0.068);
+        padding: 10px;
+        margin-bottom: 20px;
+
+    }
+
+    h1 {
+        padding: 10px;
+
+    }
+
+    .comment {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: 10%;
+        justify-content: flex-start;
+        align-items: center;
+
+    }
+
+    .comment p {
+        margin-top: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        font-size: 15px;
+        border-radius: 6px;
+        height: 70%;
+        padding: 3px;
+        border-radius: 50%
+    }
+
+    .comment textarea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80vw;
+        min-height: 70%;
+
+        padding-left: 5px;
+
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-comments {
+        /* border: 1px solid red ; */
+        width: 100%;
+        min-height: 20%;
+        margin: 10px;
+        border-top: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .user-comment-box {
+        width: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid black;
+        border-radius: 15px 14px 15px 0px
+    }
+
+    .user-comments .commented-user-content {
+        /* border: 1px solid red; */
+        width: 90%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 13px;
+
+    }
+
+    .user-comments .commented-user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 13px;
+        /* border: 1px solid black; */
+        min-width: 5%;
+        height: 100%;
+        font-family: sans-serif;
+        font-weight: 600;
+
+
+    }
+
+    .user-comments-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 3px;
+        min-height: 100%;
+        gap: 10px;
+    }
+
+    .comment-title {
+        margin: 10px;
+
+    }
+
+    .user-img {
+        /* width: 26px */
+        width: 26px;
+    border: 1px solid green;
+    border-radius: 50%;
+    padding: 1px
+    }
+
+    .current-user-img {
+        width: 29px;
+    }
+</style>
+
+<body>
+    <%- include("./partials/nav.ejs") %>
+
+        <div class="container">
+            <% if (locals.blog) { %>
+                <h1>
+                    <%= blog.title %>
+                </h1>
+                <% } else { %>
+                    <h1> Title </h1>
+                    <% } %>
+
+                        <div class="blogBody">
+                            <pre>  <%= blog.body %> </pre>
+                        </div>
+                        <form class="comment" action="<%= `/comment/${blog._id}` %>" method="post">
+                            <p>
+                                <% if (locals.user) { %>
+                                    <img class="current-user-img" src=" <%= user.profileImage %>" alt="">
+                                    <% } else {%>
+                                        user
+                                        <% } %>
+                            </p>
+
+                            <textarea name="comment" id="comment"></textarea>
+                            <button type="submit">Commenbt</button>
+
+                        </form>
+
+                        <div class="comment-title">
+                            <h3>Comments</h3>
+                        </div>
+                        <div class="user-comments">
+                            <% if (locals.comments) { %>
+                                <% comments.forEach(comment=> { %>
+                                    <div class="user-comment-box">
+                                        <img class="user-img" src="<%= comment.createdBy.profileImage %>"
+                                            alt="profile-image">
+                                        <p class="commented-user">
+                                            <%= comment.createdBy.fullname %> :
+                                        </p>
+                                        <p class="commented-user-content">
+                                            <%= comment.body %>
+                                        </p>
+                                    </div>
+                                    <% }) %>
+                                        <% } %>
+
+                        </div>
+
+
+
+
+        </div>
+
+        <%- include("./partials/script.ejs") %>
+
+</body>
+
+</html>
